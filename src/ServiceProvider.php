@@ -41,7 +41,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $client = new Client($http, $config['client_id'], $config['client_secret']);
 
-        if (isset($config['environment'] === 'carbon') {
+        if (isset($config['environment']) && $config['environment'] === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
         }
 
