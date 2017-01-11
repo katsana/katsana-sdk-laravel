@@ -39,7 +39,11 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function getSdkClient(array $config)
     {
-        $client = new Client($http, $config['client_id'], $config['client_secret']);
+        $client = new Client(
+            $this->getHttpClient(),
+            $config['client_id'],
+            $config['client_secret']
+        );
 
         if (isset($config['environment']) && $config['environment'] === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
