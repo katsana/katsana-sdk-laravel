@@ -3,6 +3,7 @@
 namespace Katsana;
 
 use Katsana\Sdk\Client;
+use Laravie\Codex\Discovery;
 use Http\Client\Common\HttpMethodsClient;
 use Illuminate\Contracts\Foundation\Application;
 use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
@@ -25,6 +26,8 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
+        Discovery::override($this->getHttpClient());
+
         $this->app->singleton('katsana', function (Application $app) {
             return $this->getSdkClient($app->make('config')->get('services.katsana'));
         });
@@ -39,8 +42,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function getSdkClient(array $config)
     {
-        $client = new Client(
-            $this->getHttpClient(),
+        $client = Client::make(
             $config['client_id'],
             $config['client_secret']
         );
@@ -59,7 +61,10 @@ class ServiceProvider extends BaseServiceProvider
      */
     protected function getHttpClient()
     {
-        return new HttpMethodsClient(new GuzzleHttpClient(), new GuzzleMessageFactory());
+        return new HttpMethodsClient(
+            new GuzzleHttpClient(),
+            new GuzzleMessageFactory()
+        );
     }
 
     /**
