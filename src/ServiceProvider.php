@@ -26,7 +26,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        Discovery::override($this->getHttpClient());
+        $this->registerHttpClient();
 
         $this->app->singleton('katsana', function (Application $app) {
             return $this->getSdkClient($app->make('config')->get('services.katsana'));
@@ -55,15 +55,16 @@ class ServiceProvider extends BaseServiceProvider
     }
 
     /**
-     * Get HTTP Client.
+     * Register HTTP Client.
      *
-     * @return \Http\Client\Common\HttpMethodsClient
+     * @return void
      */
-    protected function getHttpClient()
+    protected function registerHttpClient()
     {
-        return new HttpMethodsClient(
-            new GuzzleHttpClient(),
-            new GuzzleMessageFactory()
+        Discovery::override(
+            new HttpMethodsClient(
+                new GuzzleHttpClient(), new GuzzleMessageFactory()
+            )
         );
     }
 
