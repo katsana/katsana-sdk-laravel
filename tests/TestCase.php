@@ -11,7 +11,7 @@ abstract class TestCase extends Testbench
     /**
      * Get package aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */
@@ -25,7 +25,7 @@ abstract class TestCase extends Testbench
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
      *
      * @return array
      */

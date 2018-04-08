@@ -2,13 +2,11 @@
 
 namespace Katsana;
 
-use Katsana\Sdk\Client;
-use Laravie\Codex\Discovery;
 use Http\Client\Common\HttpMethodsClient;
 use Illuminate\Contracts\Foundation\Application;
-use Http\Adapter\Guzzle6\Client as GuzzleHttpClient;
-use Http\Message\MessageFactory\GuzzleMessageFactory;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Katsana\Sdk\Client;
+use Laravie\Codex\Discovery;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -34,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Get KATSANA SDK Client.
      *
-     * @param  array  $config
+     * @param array $config
      *
      * @return \Katsana\Sdk\Client
      */

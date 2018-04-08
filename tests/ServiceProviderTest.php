@@ -29,7 +29,6 @@ class ServiceProviderTest extends TestCase
         $this->assertSame('v1', Katsana::getApiVersion());
     }
 
-
     /** @test */
     public function it_can_use_carbon_environment()
     {
