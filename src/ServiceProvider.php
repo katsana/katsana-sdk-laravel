@@ -26,8 +26,6 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->registerHttpClient();
-
         $this->app->singleton('katsana', function (Application $app) {
             return $this->getSdkClient($app->make('config')->get('services.katsana'));
         });
@@ -40,14 +38,20 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @return \Katsana\Sdk\Client
      */
-    protected function getSdkClient(array $config)
+    protected function getSdkClient(array $config): Client
     {
-        $client = Client::make(
-            $config['client_id'],
-            $config['client_secret']
-        );
+        $client = new Client($this->createHttpClient());
 
-        if (isset($config['environment']) && $config['environment'] === 'carbon') {
+        if (isset($config['client_id']) || isset($config['client_secret'])) {
+            $client->setClientId($config['client_id'])
+                    ->setClientSecret($config['client_secret']);
+        }
+
+        if (isset($config['access_token'])) {
+            $client->setAccessToken($config['access_token']);
+        }
+
+        if (($config['environment'] ?? 'production') === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
         }
 
@@ -57,15 +61,11 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Register HTTP Client.
      *
-     * @return void
+     * @return \Http\Client\Common\HttpMethodsClient
      */
-    protected function registerHttpClient()
+    protected function createHttpClient(): HttpMethodsClient
     {
-        Discovery::override(
-            new HttpMethodsClient(
-                new GuzzleHttpClient(), new GuzzleMessageFactory()
-            )
-        );
+        return Discovery::client();
     }
 
     /**
