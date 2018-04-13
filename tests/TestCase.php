@@ -6,6 +6,8 @@ use Orchestra\Testbench\TestCase as Testbench;
 
 abstract class TestCase extends Testbench
 {
+    const CLIENT_ID = 'homestead';
+    const CLIENT_SECRET = 'secret';
     const ACCESS_TOKEN = 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF';
 
     /**
