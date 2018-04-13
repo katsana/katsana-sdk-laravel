@@ -9,7 +9,6 @@ KATSANA SDK for PHP
 [![Coverage Status](https://coveralls.io/repos/github/katsana/katsana-sdk-laravel/badge.svg?branch=master)](https://coveralls.io/github/katsana/katsana-sdk-laravel?branch=master)
 
 * [Installation](#installation)
-* [Usages](#usages)
 
 ## Installation
 
