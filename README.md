@@ -74,6 +74,7 @@ return [
     'katsana' => [
         'client_id' => env('KATSANA_CLIENT_ID'),
         'client_secret' => env('KATSANA_CLIENT_SECRET'),
+        'environment' => env('KATSANA_ENVIRONMENT', 'production'),
     ],
 ];
 ```
@@ -91,6 +92,7 @@ return [
 
     'katsana' => [
         'access_token' => env('KATSANA_ACCESS_TOKEN'),
+        'environment' => env('KATSANA_ENVIRONMENT', 'production'),
     ],
 ];
 ```
