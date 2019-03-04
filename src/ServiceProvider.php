@@ -4,19 +4,13 @@ namespace Katsana;
 
 use Http\Client\Common\HttpMethodsClient;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Katsana\Sdk\Client;
 use Laravie\Codex\Discovery;
 
-class ServiceProvider extends BaseServiceProvider
+class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * Register the service provider.
      *
