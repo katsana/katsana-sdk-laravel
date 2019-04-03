@@ -21,6 +21,10 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
         $this->app->singleton('katsana', function (Application $app) {
             return $this->getSdkClient($app->make('config')->get('services.katsana'));
         });
+
+        $this->app->singleton('katsana.http', function (Application $app) {
+            return $this->createHttpClient();
+        });
     }
 
     /**
@@ -67,6 +71,6 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      */
     public function provides()
     {
-        return ['katsana'];
+        return ['katsana', 'katsana.http'];
     }
 }

@@ -13,7 +13,7 @@ class ServiceProviderTest extends TestCase
         $katsana = new ServiceProvider(null);
 
         $this->assertTrue($katsana->isDeferred());
-        $this->assertSame(['katsana'], $katsana->provides());
+        $this->assertSame(['katsana', 'katsana.http'], $katsana->provides());
     }
 
     /** @test */
