@@ -13,6 +13,6 @@ class Katsana extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'katsana';
+        return 'katsana.manager';
     }
 }
