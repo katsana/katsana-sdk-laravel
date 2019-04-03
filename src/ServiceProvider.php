@@ -18,40 +18,17 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      */
     public function register()
     {
-        $this->app->singleton('katsana', function (Application $app) {
-            return $this->getSdkClient($app->make('config')->get('services.katsana'));
-        });
-
         $this->app->singleton('katsana.http', function (Application $app) {
             return $this->createHttpClient();
         });
-    }
 
-    /**
-     * Get KATSANA SDK Client.
-     *
-     * @param array $config
-     *
-     * @return \Katsana\Sdk\Client
-     */
-    protected function getSdkClient(array $config): Client
-    {
-        $client = new Client($this->createHttpClient());
+        $this->app->singleton('katsana.manager', function (Application $app) {
+            return new Manager($app, $app->make('config')->get('services.katsana'));
+        });
 
-        if (isset($config['client_id']) || isset($config['client_secret'])) {
-            $client->setClientId($config['client_id'])
-                    ->setClientSecret($config['client_secret']);
-        }
-
-        if (isset($config['access_token'])) {
-            $client->setAccessToken($config['access_token']);
-        }
-
-        if (($config['environment'] ?? 'production') === 'carbon') {
-            $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
-        }
-
-        return $client;
+        $this->app->singleton('katsana', function (Application $app) {
+            return $app->make('katsana.manager')->driver();
+        });
     }
 
     /**
@@ -71,6 +48,6 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      */
     public function provides()
     {
-        return ['katsana', 'katsana.http'];
+        return ['katsana', 'katsana.http', 'katsana.manager'];
     }
 }

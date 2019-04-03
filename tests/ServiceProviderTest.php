@@ -13,7 +13,7 @@ class ServiceProviderTest extends TestCase
         $katsana = new ServiceProvider(null);
 
         $this->assertTrue($katsana->isDeferred());
-        $this->assertSame(['katsana', 'katsana.http'], $katsana->provides());
+        $this->assertSame(['katsana', 'katsana.http', 'katsana.manager'], $katsana->provides());
     }
 
     /** @test */
@@ -31,7 +31,6 @@ class ServiceProviderTest extends TestCase
         $this->assertNull(Katsana::getAccessToken());
         $this->assertSame('v1', Katsana::getApiVersion());
     }
-
 
     /** @test */
     public function it_provides_the_service_using_access_token()
