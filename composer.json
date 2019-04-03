@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Katsana\\TestCase\\": "tests/"
+            "Katsana\\Tests\\": "tests/"
         }
     },
     "require": {

@@ -73,7 +73,12 @@ class Manager extends \Illuminate\Support\Manager
         return $client;
     }
 
-    public function getDefaultDriver(): string
+    /**
+     * Get the default driver name.
+     *
+     * @return string
+     */
+    public function getDefaultDriver()
     {
         return 'laravel';
     }

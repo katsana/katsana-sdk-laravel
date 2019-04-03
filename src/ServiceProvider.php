@@ -23,7 +23,9 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
         });
 
         $this->app->singleton('katsana.manager', function (Application $app) {
-            return new Manager($app, $app->make('config')->get('services.katsana'));
+            return new Manager(
+                $app, $app->make('config')->get('services.katsana', ['environment' => 'production'])
+            );
         });
 
         $this->app->singleton('katsana', function (Application $app) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Katsana\TestCase;
+namespace Katsana\Tests;
 
 use Orchestra\Testbench\TestCase as Testbench;
 

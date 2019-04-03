@@ -1,6 +1,6 @@
 <?php
 
-namespace Katsana\TestCase;
+namespace Katsana\Tests;
 
 use Katsana\Katsana;
 use Katsana\ServiceProvider;
