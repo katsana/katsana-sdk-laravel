@@ -52,7 +52,7 @@ class Manager extends \Illuminate\Support\Manager
      */
     protected function createSdkDriver(): Client
     {
-        return $this->httpClient();
+        return $this->createHttpClient();
     }
 
     /**
