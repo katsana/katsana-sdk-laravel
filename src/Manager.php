@@ -32,7 +32,7 @@ class Manager extends \Illuminate\Support\Manager
      * @param  string $key
      * @return mixed
      */
-    public function config(?string $key)
+    public function config(?string $key = null)
     {
         return Arr::get($this->config, $key);
     }

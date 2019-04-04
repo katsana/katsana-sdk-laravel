@@ -35,6 +35,7 @@ class ManagerTest extends TestCase
         $this->assertSame(static::ACCESS_TOKEN, $stub->getAccessToken());
 
         $this->assertSame('https://carbon.api.katsana.com', $stub->getApiEndpoint());
+        $this->assertSame(config('services.katsana'), $this->app['katsana.manager']->config());
     }
 
     /** @test */
@@ -54,5 +55,7 @@ class ManagerTest extends TestCase
         $this->assertNull($stub->getAccessToken());
 
         $this->assertSame('https://carbon.api.katsana.com', $stub->getApiEndpoint());
+
+        $this->assertSame('carbon', $this->app['katsana.manager']->config('environment'));
     }
 }
