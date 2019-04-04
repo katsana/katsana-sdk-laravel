@@ -24,7 +24,7 @@ class Webhook extends Request
      */
     public function validated(): array
     {
-        $config = \config('services.katsana.webhook');
+        $config = $this->container->make('katsana.manager')->config('webhook');
 
         $signature = new Signature($webhook['signature']);
         $header = $this->header('HTTP_X_SIGNATURE');
