@@ -2,6 +2,8 @@
 
 namespace Katsana;
 
+use Illuminate\Support\Arr;
+
 class Manager extends \Illuminate\Support\Manager
 {
     /**
@@ -22,6 +24,17 @@ class Manager extends \Illuminate\Support\Manager
         parent::__construct($app);
 
         $this->config = $config;
+    }
+
+    /**
+     * Get the configuration.
+     *
+     * @param  string $key
+     * @return mixed
+     */
+    public function config(?string $key)
+    {
+        return Arr::get($this->config, $key);
     }
 
     /**
