@@ -2,8 +2,6 @@
 
 namespace Katsana;
 
-use Katsana\Sdk\Client;
-
 class Manager extends \Illuminate\Support\Manager
 {
     /**
@@ -31,7 +29,7 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @return \Katsana\Sdk\Client
      */
-    protected function createLaravelDriver(): Client
+    protected function createLaravelDriver(): Sdk\Client
     {
         return \tap($this->createHttpClient(), function ($client) {
             if (isset($this->config['client_id']) || isset($this->config['client_secret'])) {
@@ -50,7 +48,7 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @return \Katsana\Sdk\Client
      */
-    protected function createSdkDriver(): Client
+    protected function createSdkDriver(): Sdk\Client
     {
         return $this->createHttpClient();
     }
@@ -62,9 +60,9 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @return \Katsana\Sdk\Client
      */
-    protected function createHttpClient(): Client
+    protected function createHttpClient(): Sdk\Client
     {
-        $client = new Client($this->app->make('katsana.http'));
+        $client = new Sdk\Client($this->app->make('katsana.http'));
 
         if (($this->config['environment'] ?? 'production') === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');

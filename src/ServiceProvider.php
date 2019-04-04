@@ -6,7 +6,6 @@ use Http\Client\Common\HttpMethodsClient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Katsana\Sdk\Client;
 use Laravie\Codex\Discovery;
 
 class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
