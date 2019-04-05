@@ -30,7 +30,7 @@ class Webhook extends Request
         $config = $this->container->make('katsana.manager')->config('webhook');
 
         $signature = new Signature($config['signature']);
-        $header = $this->header('X_SIGNATURE');
+        $header = $this->header('X_SIGNATURE') ?? '';
 
         if ($signature->verify($header, $this->getContent(), ($config['threshold'] ?? 3600))) {
             throw new HttpException(419, 'Unable to verify X-Signature.');
