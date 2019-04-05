@@ -2,8 +2,6 @@
 
 namespace Katsana\Tests;
 
-use Katsana\Manager;
-
 class ManagerTest extends TestCase
 {
     /** @test */

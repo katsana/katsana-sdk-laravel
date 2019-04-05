@@ -2,6 +2,9 @@
 
 namespace Katsana\Http\Requests;
 
+use Katsana\Sdk\Signature;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 class Webhook extends Request
 {
     /**
@@ -26,8 +29,8 @@ class Webhook extends Request
     {
         $config = $this->container->make('katsana.manager')->config('webhook');
 
-        $signature = new Signature($webhook['signature']);
-        $header = $this->header('HTTP_X_SIGNATURE');
+        $signature = new Signature($config['signature']);
+        $header = $this->header('X_SIGNATURE');
 
         if ($signature->verify($header, $this->getContent(), ($config['threshold'] ?? 3600))) {
             throw new HttpException(419, 'Unable to verify X-Signature.');

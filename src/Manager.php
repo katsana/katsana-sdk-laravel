@@ -29,7 +29,8 @@ class Manager extends \Illuminate\Support\Manager
     /**
      * Get the configuration.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function config(?string $key = null)

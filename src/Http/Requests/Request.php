@@ -2,16 +2,16 @@
 
 namespace Katsana\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Katsana\Exceptions\ValidationException;
-use Illuminate\Contracts\Validation\Validator;
 
 abstract class Request extends FormRequest
 {
     /**
      * Handle a failed validation attempt.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @param \Illuminate\Contracts\Validation\Validator $validator
      *
      * @throws \Billplz\Laravel\Exceptions\ValidationException
      *

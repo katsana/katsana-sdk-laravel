@@ -31,9 +31,9 @@ class ValidationException extends HttpException
     /**
      * Create a new exception instance.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validator
-     * @param  \Symfony\Component\HttpFoundation\Response  $response
-     * @param  string  $errorBag
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     * @param \Symfony\Component\HttpFoundation\Response $response
+     * @param string                                     $errorBag
      *
      * @return void
      */
@@ -59,7 +59,7 @@ class ValidationException extends HttpException
     /**
      * Set the HTTP status code to be used for the response.
      *
-     * @param  int  $status
+     * @param int $status
      *
      * @return $this
      */
@@ -73,7 +73,7 @@ class ValidationException extends HttpException
     /**
      * Set the error bag on the exception.
      *
-     * @param  string  $errorBag
+     * @param string $errorBag
      *
      * @return $this
      */
