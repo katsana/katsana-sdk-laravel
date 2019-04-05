@@ -32,7 +32,7 @@ class Webhook extends Request
         $signature = new Signature($config['signature']);
         $header = $this->header('X_SIGNATURE') ?? '';
 
-        if ($signature->verify($header, $this->getContent(), ($config['threshold'] ?? 3600))) {
+        if (! $signature->verify($header, $this->getContent(), ($config['threshold'] ?? 3600))) {
             throw new HttpException(419, 'Unable to verify X-Signature.');
         }
 
