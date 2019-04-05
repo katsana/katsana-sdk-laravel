@@ -22,7 +22,7 @@
     "require": {
         "php": ">=7.1",
         "illuminate/support": "^5.8",
-        "katsana/katsana-sdk-php": "^1.2",
+        "katsana/katsana-sdk-php": "^1.2.2",
         "php-http/guzzle6-adapter": "^2.0"
     },
     "require-dev": {
