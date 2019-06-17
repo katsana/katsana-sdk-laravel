@@ -13,7 +13,7 @@ class Webhook extends Request
      *
      * @var \Katsana\Manager
      */
-    protected $sdk;
+    protected $manager;
 
     /**
      * The request signature key.
@@ -85,10 +85,10 @@ class Webhook extends Request
      */
     final public function getClientManager(): Manager
     {
-        if (! isset($this->sdk)) {
-            $this->sdk = $this->container->make('katsana.manager');
+        if (! isset($this->manager)) {
+            $this->manager = $this->container->make('katsana.manager');
         }
 
-        return $this->sdk;
+        return $this->manager;
     }
 }
