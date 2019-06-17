@@ -8,6 +8,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class Webhook extends Request
 {
     /**
+     * The request signature key.
+     *
+     * @var string|null
+     */
+    protected $signatureKey;
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -37,5 +44,29 @@ class Webhook extends Request
         }
 
         return $this->post();
+    }
+
+    /**
+     * Get signature key value for the request.
+     *
+     * @return string|null
+     */
+    protected function getSignatureKey(): ?string
+    {
+        return $this->signatureKey ?? $this->container->make('katsana.manager')->config('webhook');
+    }
+
+    /**
+     * Set signature key value for the request.
+     *
+     * @param string|null $signatureKey
+     *
+     * @return $this
+     */
+    final public function setSignatureKey(?string $signatureKey): self
+    {
+        $this->signatureKey = $signatureKey;
+
+        return $this;
     }
 }
