@@ -2,9 +2,9 @@
 
 namespace Katsana\Tests\Exceptions;
 
-use PHPUnit\Framework\TestCase;
 use Katsana\Exceptions\ValidationException;
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
 class ValidationExceptionTest extends TestCase
 {
