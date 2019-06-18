@@ -17,7 +17,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
     "require": {
-        "katsana/katsana-sdk-laravel": "^1.0"
+        "katsana/katsana-sdk-laravel": "^1.1"
     }
 }
 ```
@@ -28,7 +28,7 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-    composer require "katsana/katsana-sdk-laravel=^1.0"
+    composer require "katsana/katsana-sdk-laravel=^1.1"
 
 ## Configuration
 
