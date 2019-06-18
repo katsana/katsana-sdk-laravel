@@ -151,6 +151,35 @@ class WebhookTest extends TestCase
     }
 
     /** @test */
+    public function it_cant_handle_checkpoint_webhook_when_data_is_invalid()
+    {
+        Carbon::setTestNow($now = Carbon::createFromTimestamp(1546300800));
+
+        config(['services.katsana' => [
+            'webhook' => [
+                'signature' => 'secret',
+                'threshold' => 3600,
+            ],
+        ]]);
+
+        $data = [
+            'policy_id' => 42,
+            'message' => "WXG3365 has entered 'Somewhere'",
+            'checkpoint_name' => 'Somewhere',
+            'checkpoint_type' => 'enter',
+            'ping' => [
+                'latitude' => 3.1619,
+                'longitude' => 101.6157113,
+                'speed' => 12.3,
+            ],
+        ];
+
+        return $this->postJson(
+            'webhook/checkpoint', $data, ['Content-Type' => 'application/json', 'X-Signature' => 't=1546300800,v1=633da88fcf432a0dafe2282e8a65eeea9ce6b570070b12a4db403b6767450b03']
+        )->assertStatus(422);
+    }
+
+    /** @test */
     public function it_cant_handle_checkpoint_webhook_when_signed_header_is_missing()
     {
         Carbon::setTestNow($now = Carbon::createFromTimestamp(1546300800));
