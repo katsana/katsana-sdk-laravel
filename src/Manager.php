@@ -11,19 +11,19 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @var array
      */
-    protected $config = [];
+    protected $configurations = [];
 
     /**
      * Create a new manager instance.
      *
      * @param \Illuminate\Contracts\Foundation\Application $app
-     * @param array                                        $config
+     * @param array                                        $configurations
      */
-    public function __construct($app, array $config)
+    public function __construct($app, array $configurations)
     {
         parent::__construct($app);
 
-        $this->config = $config;
+        $this->configurations = $configurations;
     }
 
     /**
@@ -35,7 +35,7 @@ class Manager extends \Illuminate\Support\Manager
      */
     public function config(?string $key = null)
     {
-        return Arr::get($this->config, $key);
+        return Arr::get($this->configurations, $key);
     }
 
     /**
@@ -46,13 +46,13 @@ class Manager extends \Illuminate\Support\Manager
     protected function createLaravelDriver(): Sdk\Client
     {
         return \tap($this->createHttpClient(), function ($client) {
-            if (isset($this->config['client_id']) || isset($this->config['client_secret'])) {
-                $client->setClientId($this->config['client_id'])
-                        ->setClientSecret($this->config['client_secret']);
+            if (isset($this->configurations['client_id']) || isset($this->configurations['client_secret'])) {
+                $client->setClientId($this->configurations['client_id'])
+                        ->setClientSecret($this->configurations['client_secret']);
             }
 
-            if (isset($this->config['access_token'])) {
-                $client->setAccessToken($this->config['access_token']);
+            if (isset($this->configurations['access_token'])) {
+                $client->setAccessToken($this->configurations['access_token']);
             }
         });
     }
@@ -70,15 +70,13 @@ class Manager extends \Illuminate\Support\Manager
     /**
      * Get KATSANA SDK Client.
      *
-     * @param array $config
-     *
      * @return \Katsana\Sdk\Client
      */
     protected function createHttpClient(): Sdk\Client
     {
         $client = new Sdk\Client($this->app->make('katsana.http'));
 
-        if (($this->config['environment'] ?? 'production') === 'carbon') {
+        if (($this->configurations['environment'] ?? 'production') === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
         }
 

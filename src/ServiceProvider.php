@@ -3,7 +3,7 @@
 namespace Katsana;
 
 use Http\Client\Common\HttpMethodsClient;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Laravie\Codex\Discovery;
@@ -17,17 +17,17 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      */
     public function register()
     {
-        $this->app->singleton('katsana.http', function (Application $app) {
+        $this->app->singleton('katsana.http', function () {
             return $this->createHttpClient();
         });
 
-        $this->app->singleton('katsana.manager', function (Application $app) {
+        $this->app->singleton('katsana.manager', static function (Container $app) {
             return new Manager(
                 $app, $app->make('config')->get('services.katsana', ['environment' => 'production'])
             );
         });
 
-        $this->app->singleton('katsana', function (Application $app) {
+        $this->app->singleton('katsana', function (Container $app) {
             return $app->make('katsana.manager')->driver();
         });
     }
