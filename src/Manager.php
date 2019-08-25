@@ -3,6 +3,7 @@
 namespace Katsana;
 
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Container\Container;
 
 class Manager extends \Illuminate\Support\Manager
 {
@@ -16,12 +17,12 @@ class Manager extends \Illuminate\Support\Manager
     /**
      * Create a new manager instance.
      *
-     * @param \Illuminate\Contracts\Foundation\Application $app
-     * @param array                                        $configurations
+     * @param \Illuminate\Contracts\Container\Container $container
+     * @param array                                     $configurations
      */
-    public function __construct($app, array $configurations)
+    public function __construct(Container $container, array $configurations)
     {
-        parent::__construct($app);
+        parent::__construct($container);
 
         $this->configurations = $configurations;
     }
