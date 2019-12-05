@@ -1,5 +1,5 @@
+dist: bionic
 language: php
-dist: xenial
 
 php:
   - 7.2
@@ -41,6 +41,16 @@ matrix:
       env: setup=stable laravel=^5.8
     - php: 7.1
       env: setup=lowest laravel=^5.8
+    - php: 7.4
+      env: setup=basic laravel=^5.8
+    - php: 7.4
+      env: setup=basic laravel=^6.0
+    - php: 7.4
+      env: setup=stable laravel=^5.8
+    - php: 7.4
+      env: setup=stable laravel=^6.0
+    - php: 7.4
+      env: setup=lowest laravel=^6.0
     - php: 7.1
       env: setup=coveralls coverage=yes laravel=^5.8
   allow_failures:
