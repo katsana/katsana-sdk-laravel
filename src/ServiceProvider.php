@@ -27,7 +27,7 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
             );
         });
 
-        $this->app->singleton('katsana', function (Container $app) {
+        $this->app->singleton('katsana', static function (Container $app) {
             return $app->make('katsana.manager')->driver();
         });
     }
