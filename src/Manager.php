@@ -75,7 +75,7 @@ class Manager extends \Illuminate\Support\Manager
      */
     protected function createHttpClient(): Sdk\Client
     {
-        $client = new Sdk\Client($this->app->make('katsana.http'));
+        $client = new Sdk\Client($this->container->make('katsana.http'));
 
         if (($this->configurations['environment'] ?? 'production') === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
