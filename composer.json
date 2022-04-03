@@ -20,13 +20,13 @@
         }
     },
     "require": {
-        "php": ">=7.1",
+        "php": "^7.3 || ^8.0",
         "illuminate/support": "^5.8 || ^6.0 || ^7.0 || ^8.0",
-        "katsana/katsana-sdk-php": "^1.2.4",
-        "php-http/guzzle6-adapter": "^2.0"
+        "katsana/katsana-sdk-php": "dev-master",
+        "php-http/guzzle7-adapter": "1.x-dev"
     },
     "require-dev": {
-        "mockery/mockery": "^1.3.1",
+        "mockery/mockery": "^1.5",
         "orchestra/testbench": "^3.8.5 || ^4.5 || ^5.0 || ^6.0"
     },
     "extra": {
