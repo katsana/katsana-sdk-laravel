@@ -77,9 +77,14 @@ class Manager extends \Illuminate\Support\Manager
     {
         $container = $this->container ?? $this->app;
         $client = new Sdk\Client($container->make('katsana.http'));
+        $customApiEndpoint = data_get($this->configurations, 'endpoints.api') ?? null;
 
         if (($this->configurations['environment'] ?? 'production') === 'carbon') {
             $client->useCustomApiEndpoint('https://carbon.api.katsana.com');
+        }
+
+        if ($customApiEndpoint) {
+            $client->useCustomApiEndpoint($customApiEndpoint);
         }
 
         return $client;

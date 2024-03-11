@@ -1,5 +1,4 @@
-KATSANA SDK for PHP
-==============
+# KATSANA SDK for PHP
 
 [![Build Status](https://travis-ci.org/katsana/katsana-sdk-laravel.svg?branch=master)](https://travis-ci.org/katsana/katsana-sdk-laravel)
 [![Latest Stable Version](https://poser.pugx.org/katsana/katsana-sdk-laravel/v/stable)](https://packagist.org/packages/katsana/katsana-sdk-laravel)
@@ -8,7 +7,7 @@ KATSANA SDK for PHP
 [![License](https://poser.pugx.org/katsana/katsana-sdk-laravel/license)](https://packagist.org/packages/katsana/katsana-sdk-laravel)
 [![Coverage Status](https://coveralls.io/repos/github/katsana/katsana-sdk-laravel/badge.svg?branch=master)](https://coveralls.io/github/katsana/katsana-sdk-laravel?branch=master)
 
-* [Installation](#installation)
+- [Installation](#installation)
 
 ## Installation
 
@@ -16,9 +15,9 @@ To install through composer, simply put the following in your `composer.json` fi
 
 ```json
 {
-    "require": {
-        "katsana/katsana-sdk-laravel": "^1.1"
-    }
+  "require": {
+    "katsana/katsana-sdk-laravel": "^1.1"
+  }
 }
 ```
 
@@ -65,7 +64,7 @@ You might want to add `Katsana\Katsana` to class aliases in `config/app.php`:
 Next add the configuration in `config/services.php`.
 
 ```php
-<?php 
+<?php
 
 return [
 
@@ -75,6 +74,11 @@ return [
         'client_id' => env('KATSANA_CLIENT_ID'),
         'client_secret' => env('KATSANA_CLIENT_SECRET'),
         'environment' => env('KATSANA_ENVIRONMENT', 'production'),
+        //Optional
+        'endpoints'=>[
+            'api' => 'http://katsana-api-endpoint',
+            'oauth' => 'http://katsana-outh-endpoint',
+        ],
     ],
 ];
 ```
@@ -84,7 +88,7 @@ return [
 Next add the configuration in `config/services.php`.
 
 ```php
-<?php 
+<?php
 
 return [
 
