@@ -2,11 +2,12 @@
 
 namespace Katsana;
 
+use GuzzleHttp\Psr7\HttpFactory;
+use Http\Adapter\Guzzle7\Client as Guzzle7Client;
 use Http\Client\Common\HttpMethodsClient;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use Laravie\Codex\Discovery;
 
 class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
@@ -39,7 +40,13 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      */
     protected function createHttpClient(): HttpMethodsClient
     {
-        return Discovery::client();
+        $factory = new HttpFactory();
+
+        return new HttpMethodsClient(
+            Guzzle7Client::createWithConfig([]),
+            $factory,
+            $factory
+        );
     }
 
     /**

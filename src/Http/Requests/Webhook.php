@@ -38,9 +38,12 @@ class Webhook extends Request
     /**
      * Get the validated data from the request.
      *
-     * @return array
+     * @param  array|int|string|null  $key
+     * @param  mixed  $default
+     *
+     * @return array|mixed
      */
-    public function validated(): array
+    public function validated($key = null, $default = null)
     {
         $signature = new Signature($this->getSignatureKey());
         $header = $this->header('X_SIGNATURE') ?? '';
@@ -51,7 +54,13 @@ class Webhook extends Request
             throw new HttpException(419, 'Unable to verify X-Signature.');
         }
 
-        return $this->post();
+        $data = $this->post();
+
+        if (is_null($key)) {
+            return $data;
+        }
+
+        return data_get($data, $key, $default);
     }
 
     /**
