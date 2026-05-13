@@ -8,32 +8,9 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 class ValidationException extends HttpException
 {
     /**
-     * The validator instance.
-     *
-     * @var \Illuminate\Contracts\Validation\Validator
-     */
-    public $validator;
-
-    /**
-     * The recommended response to send to the client.
-     *
-     * @var \Symfony\Component\HttpFoundation\Response|null
-     */
-    public $response;
-
-    /**
-     * The name of the error bag.
-     *
-     * @var string
-     */
-    public $errorBag;
-
-    /**
      * The status code to use for the response.
-     *
-     * @var int
      */
-    private $statusCode = 422;
+    private int $statusCode = 422;
 
     /**
      * Create a new exception instance.
@@ -44,13 +21,12 @@ class ValidationException extends HttpException
      *
      * @return void
      */
-    public function __construct($validator, $response = null, $errorBag = 'default')
-    {
+    public function __construct(
+        public readonly \Illuminate\Contracts\Validation\Validator $validator,
+        public readonly ?\Symfony\Component\HttpFoundation\Response $response = null,
+        public readonly string $errorBag = 'default'
+    ) {
         parent::__construct(422, 'The given data was invalid.');
-
-        $this->response = $response;
-        $this->errorBag = $errorBag;
-        $this->validator = $validator;
     }
 
     /**
@@ -58,7 +34,7 @@ class ValidationException extends HttpException
      *
      * @return array
      */
-    public function errors()
+    public function errors(): array
     {
         return $this->validator->errors()->messages();
     }
@@ -70,7 +46,7 @@ class ValidationException extends HttpException
      *
      * @return $this
      */
-    public function status($statusCode)
+    public function status(int $statusCode): static
     {
         $this->statusCode = $statusCode;
 
@@ -84,7 +60,7 @@ class ValidationException extends HttpException
      *
      * @return $this
      */
-    public function errorBag($errorBag)
+    public function errorBag(string $errorBag): static
     {
         $this->errorBag = $errorBag;
 
@@ -96,7 +72,7 @@ class ValidationException extends HttpException
      *
      * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function getResponse()
+    public function getResponse(): ?\Symfony\Component\HttpFoundation\Response
     {
         return $this->response;
     }

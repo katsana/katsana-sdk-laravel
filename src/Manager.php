@@ -34,7 +34,7 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @return mixed
      */
-    public function config(?string $key = null)
+    public function config(?string $key = null): mixed
     {
         return Arr::get($this->configurations, $key);
     }
@@ -75,7 +75,7 @@ class Manager extends \Illuminate\Support\Manager
      */
     protected function createHttpClient(): Sdk\Client
     {
-        $container = $this->container ?? $this->app;
+        $container = $this->container;
         $client = new Sdk\Client($container->make('katsana.http'));
         $customApiEndpoint = data_get($this->configurations, 'endpoints.api') ?? null;
 
@@ -95,7 +95,7 @@ class Manager extends \Illuminate\Support\Manager
      *
      * @return string
      */
-    public function getDefaultDriver()
+    public function getDefaultDriver(): string
     {
         return 'laravel';
     }

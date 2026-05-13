@@ -16,7 +16,7 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('katsana.http', function () {
             return $this->createHttpClient();
@@ -54,7 +54,7 @@ class ServiceProvider extends BaseServiceProvider implements DeferrableProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['katsana', 'katsana.http', 'katsana.manager'];
     }

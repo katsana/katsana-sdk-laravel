@@ -13,11 +13,10 @@ abstract class TestCase extends Testbench
     /**
      * Get package aliases.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<string, class-string>
      */
-    protected function getPackageAliases($app)
+    protected function getPackageAliases($app): array
     {
         return [
             'Katsana' => \Katsana\Katsana::class,
@@ -27,11 +26,10 @@ abstract class TestCase extends Testbench
     /**
      * Get package providers.
      *
-     * @param \Illuminate\Foundation\Application $app
-     *
-     * @return array
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string>
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             \Katsana\ServiceProvider::class,
